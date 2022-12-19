@@ -25,3 +25,18 @@ extension View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
+
+extension View {
+    public func gradientForeground(_ colors: [Color]) -> some View {
+        self.overlay(
+            LinearGradient(
+                colors: colors,
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing)
+        )
+            .mask(self)
+    }
+}
+
+
