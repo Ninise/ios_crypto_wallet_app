@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
+    @State private var isNewWallet = false
+    @State private var isHasWallet = false
+
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -50,7 +55,11 @@ struct WelcomeView: View {
                         
                         Spacer(minLength: 20)
                         
-                        Button {} label: {
+                        NavigationLink(destination: SecretPhraseView(),
+                                                                      isActive: $isNewWallet,
+                                                                      label: {  })
+                        
+                        Button { isNewWallet = true } label: {
                                            Text("Create a New Wallet")
                                 .font(.custom(FontUtils.MAIN_REGULAR, size: 18))
                                                  .foregroundColor(.white)
@@ -89,6 +98,10 @@ struct WelcomeView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden()
+        .onAppear(perform: {
+            isNewWallet = false
+            
+        })
     }
 }
 
