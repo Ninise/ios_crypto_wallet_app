@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110320EE295355C4000076F8 /* ConfirmSecretPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110320ED295355C4000076F8 /* ConfirmSecretPhraseView.swift */; };
 		113E4E7E2949D6F9009619B0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E4E7D2949D6F9009619B0 /* SplashView.swift */; };
 		113E4E812949DAB3009619B0 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E4E802949DAB3009619B0 /* Color+Extension.swift */; };
 		113E4E832949DAFC009619B0 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E4E822949DAFC009619B0 /* View+Extension.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110320ED295355C4000076F8 /* ConfirmSecretPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSecretPhraseView.swift; sourceTree = "<group>"; };
 		113E4E7D2949D6F9009619B0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		113E4E802949DAB3009619B0 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		113E4E822949DAFC009619B0 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				1145090A29507BF900F88C99 /* WelcomeView.swift */,
 				11E6AF5329519083005103EB /* SecretPhraseView.swift */,
+				110320ED295355C4000076F8 /* ConfirmSecretPhraseView.swift */,
 			);
 			path = onboarding;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				11E6AF59295198DC005103EB /* LoadingView.swift in Sources */,
 				11E6AF572951972C005103EB /* WordGeneratorManager.swift in Sources */,
 				11E6AF5429519083005103EB /* SecretPhraseView.swift in Sources */,
+				110320EE295355C4000076F8 /* ConfirmSecretPhraseView.swift in Sources */,
 				11B9AB7A294885AC00C24E9B /* CryptoWalletApp.swift in Sources */,
 				1145091C295085B900F88C99 /* Text+Extension.swift in Sources */,
 				113E4E832949DAFC009619B0 /* View+Extension.swift in Sources */,
