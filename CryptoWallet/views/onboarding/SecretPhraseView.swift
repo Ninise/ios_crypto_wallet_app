@@ -17,6 +17,7 @@ struct SecretPhraseView: View {
     ]
     
     @State private var words: [String]?
+    @State private var isReadyToConfirm = false
     
     var body: some View {
         NavigationView {
@@ -93,7 +94,13 @@ struct SecretPhraseView: View {
                     }
                     .padding(.top, -20)
                     
-                    Button {} label: {
+                    NavigationLink(destination: ConfirmSecretPhraseView(),
+                                   isActive: $isReadyToConfirm,
+                                                                  label: {  })
+                    
+                    Button {
+                        self.isReadyToConfirm = true
+                    } label: {
                         Text("Ok, I saved")
                             .font(.custom(FontUtils.MAIN_REGULAR, size: 18))
                             .foregroundColor(.white)

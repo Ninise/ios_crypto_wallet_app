@@ -9,8 +9,8 @@ import Foundation
 
 class WordGeneratorManager {
     
-    class func getSecretWords() async throws -> [String] {
-        guard let url = URL(string: "https://random-word-api.herokuapp.com/word?number=12") else {
+    class func getSecretWords(_ number:Int = 12) async throws -> [String] {
+        guard let url = URL(string: "https://random-word-api.herokuapp.com/word?number=\(number)") else {
             fatalError("Missing URL")
         }
         

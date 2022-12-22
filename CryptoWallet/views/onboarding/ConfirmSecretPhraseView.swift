@@ -11,7 +11,8 @@ struct ConfirmSecretPhraseView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var words: [String]?
+    @State var words: [String]?
+    @State var confirmedWords: [String] = []
 
     var body: some View {
         NavigationView {
@@ -22,8 +23,7 @@ struct ConfirmSecretPhraseView: View {
                 LoadingView()
                     .task {
                         do {
-                            words = try await WordGeneratorManager.getSecretWords()
-                            
+                            words = try await WordGeneratorManager.getSecretWords(12)
                         } catch {
                             print("Error getting weather")
                         }
@@ -33,9 +33,13 @@ struct ConfirmSecretPhraseView: View {
                     ScrollView {
                         VStack {
                             TitleTopView()
-                            ConfirmedListView(words: words)
-                            WordsToConfirmView(words: words)
-                        
+                            ConfirmedListView(words: $confirmedWords)
+                            WordsToConfirmView(words: words, callback: { text in
+                                confirmedWords.append(text)
+                            })
+                            
+                            VStack {}
+                            .frame(height: 300)
                         }
                         .padding(20)
                     }
@@ -72,28 +76,25 @@ struct ConfirmSecretPhraseView_Previews: PreviewProvider {
 
 struct ConfirmedListView: View {
     
-    private var gridLayout = [
+    var gridLayout = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    init(words: [String]?) {
-        self.words = words
-    }
+    @Binding var words: [String]
     
-    private var words: [String]?
-     
     var body: some View {
         VStack {
-            if let words = words {
+            
                 ScrollView (.vertical, showsIndicators: false) {
                     LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                        ForEach(0..<words.count) { index in
+                        ForEach(0..<words.count, id: \.self) { index in
                             
                             ZStack {
                                 Text("\(index + 1). \(words[index])")
                                     .font(.custom(FontUtils.MAIN_BOLD, size: 16))
                                     .padding(10)
+                                    .foregroundColor(.black)
                                     .frame(maxWidth: .infinity)
                                     .lineLimit(1)
                                 
@@ -106,13 +107,35 @@ struct ConfirmedListView: View {
                             
                             
                         }.padding(3)
+                        
+                        if (words.count < 12) {
+                            ForEach(words.count..<12, id: \.self) { index in
+
+                                ZStack {
+                                    Text("\(index + 1).                 ")
+                                        .font(.custom(FontUtils.MAIN_BOLD, size: 16))
+                                        .padding(10)
+                                        .foregroundColor(.gray)
+                                        .frame(maxWidth: .infinity)
+                                        .lineLimit(1)
+
+
+                                }
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(.gray, lineWidth: 1)
+                                )
+
+
+                            }.padding(3)
+                        }
                     }
                     .padding()
                     
                 }
                 .padding(.top, 10)
             }
-        }
+        
     }
 }
 
@@ -160,19 +183,25 @@ struct BottomView: View {
 }
 
 struct WordsToConfirmView: View {
+    
+    @State private var selectedWords: [String] = []
+
+    private var words: [String]?
+
+    let onSelect: (String) -> ()
+
+    init(words: [String]?, callback: @escaping (String) -> ()) {
+        self.words = words
+        self.onSelect = callback
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             self.generateContent(in: geometry)
         }
     }
     
-    init(words: [String]?) {
-        self.words = words
-    }
-    
-    private var words: [String]?
      
-    
     private func generateContent(in g: GeometryProxy) -> some View {
             var width = CGFloat.zero
             var height = CGFloat.zero
@@ -209,14 +238,18 @@ struct WordsToConfirmView: View {
                 
             }
         }
-
-        func item(for text: String) -> some View {
+    
+        private func item(for text: String) -> some View {
             Text(text)
                 .padding(.all, 13)
                 .font(.custom(FontUtils.MAIN_BOLD, size: 15))
-                .background(Color.white)
-                .foregroundColor(Color.black)
+                .background(selectedWords.contains(text) ? Color(hex: "#F1F1F2") : Color.white)
+                .foregroundColor(selectedWords.contains(text) ? Color(hex: "#D3D4D7") : Color.black)
                 .cornerRadius(30)
                 .shadow(color: .gray, radius: 5, x: 2, y: 2)
+                .onTapGesture(count: 1, perform: {
+                    selectedWords.append(text)
+                    onSelect(text)
+                })
         }
 }
