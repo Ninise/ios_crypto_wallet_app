@@ -9,7 +9,7 @@ import Foundation
 
 class WordGeneratorManager {
     
-    class func getSecretWords(_ number:Int = 12) async throws -> [String] {
+    class func getSecretWords(_ number:Int = 12) async throws -> [SecretWord] {
         guard let url = URL(string: "https://random-word-api.herokuapp.com/word?number=\(number)") else {
             fatalError("Missing URL")
         }
@@ -23,6 +23,9 @@ class WordGeneratorManager {
         
         let decodedData = try JSONDecoder().decode([String].self, from: data)
         
-        return decodedData
+        return decodedData.map { text in
+            SecretWord(text: text, isSelected: false)
+            
+        }
     }
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		110320EE295355C4000076F8 /* ConfirmSecretPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110320ED295355C4000076F8 /* ConfirmSecretPhraseView.swift */; };
+		111DCD542955C51000F9C7AD /* SecretWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DCD532955C51000F9C7AD /* SecretWord.swift */; };
+		111DCD572955D6A800F9C7AD /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 111DCD562955D6A800F9C7AD /* Toast */; };
 		113E4E7E2949D6F9009619B0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E4E7D2949D6F9009619B0 /* SplashView.swift */; };
 		113E4E812949DAB3009619B0 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E4E802949DAB3009619B0 /* Color+Extension.swift */; };
 		113E4E832949DAFC009619B0 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E4E822949DAFC009619B0 /* View+Extension.swift */; };
@@ -30,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		110320ED295355C4000076F8 /* ConfirmSecretPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSecretPhraseView.swift; sourceTree = "<group>"; };
+		111DCD532955C51000F9C7AD /* SecretWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretWord.swift; sourceTree = "<group>"; };
 		113E4E7D2949D6F9009619B0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		113E4E802949DAB3009619B0 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		113E4E822949DAFC009619B0 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -57,12 +60,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				111DCD572955D6A800F9C7AD /* Toast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		111DCD522955C4FB00F9C7AD /* models */ = {
+			isa = PBXGroup;
+			children = (
+				111DCD532955C51000F9C7AD /* SecretWord.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		113E4E7C2949D6DA009619B0 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,7 @@
 		11B9AB78294885AC00C24E9B /* CryptoWallet */ = {
 			isa = PBXGroup;
 			children = (
+				111DCD522955C4FB00F9C7AD /* models */,
 				11E6AF5529519713005103EB /* managers */,
 				11450918295080CE00F88C99 /* utils */,
 				114509172950800300F88C99 /* Info.plist */,
@@ -178,6 +191,9 @@
 			dependencies = (
 			);
 			name = CryptoWallet;
+			packageProductDependencies = (
+				111DCD562955D6A800F9C7AD /* Toast */,
+			);
 			productName = CryptoWallet;
 			productReference = 11B9AB76294885AC00C24E9B /* CryptoWallet.app */;
 			productType = "com.apple.product-type.application";
@@ -206,6 +222,9 @@
 				Base,
 			);
 			mainGroup = 11B9AB6D294885AC00C24E9B;
+			packageReferences = (
+				111DCD552955D6A800F9C7AD /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+			);
 			productRefGroup = 11B9AB77294885AC00C24E9B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -241,6 +260,7 @@
 				1145090B29507BF900F88C99 /* WelcomeView.swift in Sources */,
 				1145091A295080DF00F88C99 /* FontUtils.swift in Sources */,
 				11E6AF59295198DC005103EB /* LoadingView.swift in Sources */,
+				111DCD542955C51000F9C7AD /* SecretWord.swift in Sources */,
 				11E6AF572951972C005103EB /* WordGeneratorManager.swift in Sources */,
 				11E6AF5429519083005103EB /* SecretPhraseView.swift in Sources */,
 				110320EE295355C4000076F8 /* ConfirmSecretPhraseView.swift in Sources */,
@@ -451,6 +471,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		111DCD552955D6A800F9C7AD /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BastiaanJansen/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		111DCD562955D6A800F9C7AD /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 111DCD552955D6A800F9C7AD /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 11B9AB6E294885AC00C24E9B /* Project object */;
 }

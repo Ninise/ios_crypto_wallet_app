@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toast
 
 struct SecretPhraseView: View {
     
@@ -16,7 +17,7 @@ struct SecretPhraseView: View {
         GridItem(.flexible())
     ]
     
-    @State private var words: [String]?
+    @State private var words: [SecretWord]?
     @State private var isReadyToConfirm = false
     
     var body: some View {
@@ -45,7 +46,7 @@ struct SecretPhraseView: View {
                                 LazyVGrid(columns: gridLayout, alignment: .center, spacing: 20) {
                                     ForEach(0..<words.count) { index in
                                         
-                                        Text("\(index + 1). \(words[index])")
+                                        Text("\(index + 1). \(words[index].text)")
                                             .font(.custom(FontUtils.MAIN_BOLD, size: 14))
                                             .padding(5)
                                     }
@@ -65,7 +66,9 @@ struct SecretPhraseView: View {
                                 }
                         }
                         
-                        Button {} label: {
+                        Button {
+                            copyToClipboard(words ?? [])
+                        } label: {
                             HStack {
                                 Image("clipboard")
                                     .resizable()
@@ -94,7 +97,7 @@ struct SecretPhraseView: View {
                     }
                     .padding(.top, -20)
                     
-                    NavigationLink(destination: ConfirmSecretPhraseView(),
+                    NavigationLink(destination: ConfirmSecretPhraseView(words: words ?? []),
                                    isActive: $isReadyToConfirm,
                                                                   label: {  })
                     
@@ -132,6 +135,15 @@ struct SecretPhraseView: View {
             }
             
         }
+    }
+    
+    func copyToClipboard(_ words: [SecretWord]) {
+        let wordsString = words.map { $0.text }.joined(separator: " ")
+        
+        UIPasteboard.general.string = wordsString
+        
+        let toast = Toast.text("Secret Phrase copied to clipboard")
+        toast.show()
     }
 }
 
