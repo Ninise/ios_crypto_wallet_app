@@ -126,6 +126,8 @@ struct TitleTopView: View {
 }
 
 struct BottomView: View {
+    @State var goToScan = false
+    
     var body: some View {
         VStack {
             VStack{
@@ -134,7 +136,14 @@ struct BottomView: View {
             }
             .padding(.top, -20)
             
-            Button {} label: {
+            NavigationLink(destination: FaceIdFingerScanView(),
+                           isActive: $goToScan,
+                                                          label: {  })
+           
+            
+            Button {
+                goToScan = true
+            } label: {
                 Text("Confirmation")
                     .font(.custom(FontUtils.MAIN_REGULAR, size: 18))
                     .foregroundColor(.white)
@@ -147,6 +156,9 @@ struct BottomView: View {
             .cornerRadius(30)
             .padding(.vertical, 10)
             .padding(.horizontal, 20)
+        }
+        .onAppear {
+            goToScan = false
         }
     }
 }
