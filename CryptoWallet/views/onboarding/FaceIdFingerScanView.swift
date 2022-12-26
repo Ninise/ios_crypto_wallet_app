@@ -11,7 +11,8 @@ import Toast
 struct FaceIdFingerScanView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var animate = true
+    @State private var animationAmount: CGFloat = 1
+    
     
     var body: some View {
         ZStack {
@@ -38,20 +39,21 @@ struct FaceIdFingerScanView: View {
                 
                 Circle()
                     .foregroundColor(Color(hex: "#F1F1F2"))
+                    .frame(width: 180, height: 180)
                     .overlay {
                         Image("face-scan")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 150, height: 150)
                     }
-                    .frame(width: 180, height: 180)
-                    .onAppear { self.animate = true }
-                    .animation(animate ? Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true) : .default, value: animate)
-                    .onChange(of: 1) { _ in
-                           self.animate = false
-                           DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                               self.animate = true
-                           }
+                    .scaleEffect(animationAmount)
+                    .animation(
+                        .easeInOut(duration: 0.9)
+                            .delay(0.2)
+                            .repeatForever(autoreverses: true),
+                        value: animationAmount)
+                    .onAppear {
+                        animationAmount = 1.1
                     }
                     .onTapGesture {
                         let authManager = AuthManager()
@@ -71,12 +73,11 @@ struct FaceIdFingerScanView: View {
                                 
                                 let toast = Toast.text("You are good to RECT")
                                 toast.show()
-
+                                
                             }
                         }
                     }
                     
-                
                 Spacer()
                 
                 Text("By let FaceID, you agree to our \(Text("Terms").foregroundColor(.black)) and \(Text("Conditions").foregroundColor(.black))")
