@@ -59,6 +59,11 @@ struct WelcomeView: View {
                                                                       isActive: $isNewWallet,
                                                                       label: {  })
                         
+                        NavigationLink(destination: MainView(),
+                                       isActive: $isHasWallet,
+                                                                      label: {  })
+                        
+                        
                         Button { isNewWallet = true } label: {
                                            Text("Create a New Wallet")
                                 .font(.custom(FontUtils.MAIN_REGULAR, size: 18))
@@ -71,7 +76,9 @@ struct WelcomeView: View {
                                          .background(Color.black)
                                          .cornerRadius(30)
                         
-                        Button {} label: {
+                        Button {
+                            isHasWallet = true
+                        } label: {
                                            Text("Already Have a Wallet")
                                 .font(.custom(FontUtils.MAIN_MEDIUM, size: 18))
                                                  .foregroundColor(.black)
@@ -100,7 +107,7 @@ struct WelcomeView: View {
         .navigationBarBackButtonHidden()
         .onAppear(perform: {
             isNewWallet = false
-            
+            isHasWallet = false
         })
     }
 }

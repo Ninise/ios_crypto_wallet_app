@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct MainView: View {
     
@@ -16,17 +17,18 @@ struct MainView: View {
         
         ZStack(alignment: .bottom) {
             
+          
+
             Color(.white)
                 .edgesIgnoringSafeArea(.all)
             
+                
             ScrollView {
                 ZStack {
                     switch selectedIndex {
                     case 0:
-                        NavigationView {
-                            HomeView(withURL: AVATAR_URL)
-                                .edgesIgnoringSafeArea(.top)
-                        }
+                        HomeView(withURL: AVATAR_URL)
+
                     case 1:
                         NavigationView {
                             VStack {
@@ -55,15 +57,17 @@ struct MainView: View {
                         
                     }
                 }
-                .edgesIgnoringSafeArea(.top)
-                
                 
             }
             .edgesIgnoringSafeArea(.top)
             
+
+            
+            
             
             BottomNavigationView(selectedIndex: $selectedIndex)
         }
+        .navigationBarBackButtonHidden()
         
         
     }
@@ -147,7 +151,75 @@ struct HomeView: View {
     
     var body: some View {
         
-        VStack {
+        ZStack(alignment: .top) {
+            
+            RadialGradient(gradient: Gradient(colors: [Color(hex: "#7A17D7"), Color(hex: "#ED74CD"), Color(hex: "#EBB5A3") ]), center: .topTrailing, startRadius: 100, endRadius: 800)
+                .frame(height: 250)
+                .edgesIgnoringSafeArea(.top)
+          
+            
+            VStack {
+                
+                HomeTopView(url: url)
+                
+                HomeBalanceView()
+                
+                
+                Button(action: {
+                    
+                }, label: {
+                    HStack {
+                        Text("Your Stock")
+                            .font(.custom(FontUtils.MAIN_BOLD, size: 24))
+                            .foregroundColor(.black)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.top, 10)
+                    .padding(.horizontal, 30)
+                })
+                
+                
+                ScrollView (.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(0..<5, id:\.self) { index in
+                            VStack {
+                                Text("BTC \(index)")
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 190, height: 170)
+                            .background(.white)
+                            
+                            .cornerRadius(15, corners: .allCorners)
+                            .shadow(radius: 3)
+                        }
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                    }
+                    
+                }
+                .padding(.horizontal, 15)
+                
+                
+                
+                
+            }
+        }
+        
+        
+    }
+}
+
+struct HomeTopView: View {
+    
+    var url: String
+    
+    var body: some View {
+        ZStack {
             
             VStack {
                 HStack {
@@ -156,7 +228,9 @@ struct HomeView: View {
                         AsyncImage(url: URL(string: url)) { image in image.resizable()
                             
                         } placeholder: { Color.gray }
-                            .frame(width: 60, height: 60) .clipShape(RoundedRectangle(cornerRadius: 30))
+                            .frame(width: 65, height: 65)
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 40))
                     })
                     
                     
@@ -166,7 +240,7 @@ struct HomeView: View {
                         Button(action: {}, label: {
                             HStack {
                                 Text("0x2D3b3A14c7ff8156dF61c85b77392291c0747e87")
-                                    .font(.custom(FontUtils.MAIN_BOLD, size: 14))
+                                    .font(.custom(FontUtils.MAIN_BOLD, size: 16))
                                     .truncationMode(.middle)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: 90)
@@ -185,7 +259,7 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                                 .frame(width: 20, height: 20)
                             Text("Receive")
-                                .font(.custom(FontUtils.MAIN_REGULAR, size: 12))
+                                .font(.custom(FontUtils.MAIN_REGULAR, size: 14))
                                 .foregroundColor(.white)
                         })
                     }
@@ -205,23 +279,81 @@ struct HomeView: View {
                     .frame(width: 45, height: 45)
                     .background(.white)
                     .cornerRadius(30)
+                    .shadow(radius: 5)
                     
                     
                 }
                 .padding(20)
-                .padding(.top, 50)
                 
                 Spacer()
-                
             }
-            .background(RadialGradient(gradient: Gradient(colors: [Color(hex: "#7A17D7"), Color(hex: "#ED74CD"), Color(hex: "#EBB5A3") ]), center: .topTrailing, startRadius: 100, endRadius: 800)
-                .frame(height: 250)
-                .opacity(1))
-            
-            .frame(height: 250)
-            
-            Spacer()
-            
+            .padding(.top, 50)
+            .padding(.horizontal, 10)
         }
     }
 }
+
+struct HomeBalanceView: View {
+    var body: some View {
+        VStack {
+            HStack(alignment: .center) {
+                VStack (alignment: .leading) {
+                    Text("Your Balance")
+                        .font(.custom(FontUtils.MAIN_REGULAR, size: 18)).foregroundColor(.gray)
+                        .padding(.bottom, 2)
+                    
+                    Text("$63,120.80")
+                        .font(.custom(FontUtils.MAIN_BOLD, size: 24)).foregroundColor(.black)
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                    
+                }, label: {
+                    Image(systemName: "plus")
+                        .resizable()
+                        .foregroundColor(.white)
+                        .scaledToFit()
+                        .frame(width: 15, height: 15)
+                })
+                .frame(width: 40, height: 40)
+                .background(.black)
+                .cornerRadius(30)
+                .shadow(radius: 5)
+            }
+            .padding(.top, 20)
+            .padding(.horizontal, 25)
+            
+            Spacer()
+            
+            HStack {
+                Chart {
+                    ForEach(0..<7, id: \.self) { item in
+                        LineMark(
+                            x: .value("x", item),
+                            y: .value("y", Int.random(in: 0...7))
+                        )
+                        .lineStyle(.init(lineWidth: 3))
+                        .foregroundStyle(.green)
+                        
+                    }
+                }
+                .chartYAxis(.hidden)
+                .chartXAxis(.hidden)
+                
+            }
+            .padding(.top, 10)
+            .padding(.horizontal, 25)
+            .padding(.bottom, 20)
+            
+        }
+        .frame(height: 170)
+        .background(.white)
+        .cornerRadius(15, corners: .allCorners)
+        .shadow(radius: 4)
+        .padding(.horizontal, 30)
+        .padding(.top, 5)
+    }
+}
+
