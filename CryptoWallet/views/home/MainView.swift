@@ -145,6 +145,20 @@ struct HomeView: View {
     
     @State var url: String
     
+    
+    
+    var coins: [Coin] = [
+        Coin(coinName: "Bitcoin", coinTicker: "BTC", coinImage: "https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Bitcoin-BTC-icon.png", coinPrice: "17,000", coinGoingUp: true, coinMove: "2.5", coinColors: [Color(hex: "#FEA82E"), Color(hex: "#F49219")]),
+        
+        Coin(coinName: "Ethreum", coinTicker: "ETH", coinImage: "https://png.pngtree.com/png-vector/20210427/ourmid/pngtree-ethereum-cryptocurrency-coin-icon-png-image_3246438.jpg", coinPrice: "1,100", coinGoingUp: false, coinMove: "1.5", coinColors: [Color(hex: "#383838"), Color(hex: "#161717")]),
+        
+        Coin(coinName: "Polygon", coinTicker: "MATIC", coinImage: "https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/DPYBKVZG55EWFHIK2TVT3HTH7Y.png", coinPrice: "0,8", coinGoingUp: false, coinMove: "0.5", coinColors: [Color(hex: "#7E43DA"), Color(hex: "#6A32CF")]),
+        
+        
+        Coin(coinName: "Solana", coinTicker: "SOL", coinImage: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png", coinPrice: "18", coinGoingUp: true, coinMove: "5", coinColors: [Color(hex: "#1DEA97"), Color(hex: "#9241F2")])
+        
+    ]
+    
     init(withURL url:String) {
         self.url = url
     }
@@ -186,23 +200,18 @@ struct HomeView: View {
                 
                 ScrollView (.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(0..<5, id:\.self) { index in
-                            VStack {
-                                Text("BTC \(index)")
-                                    .foregroundColor(.black)
-                            }
-                            .frame(width: 190, height: 170)
-                            .background(.white)
-                            
-                            .cornerRadius(15, corners: .allCorners)
-                            .shadow(radius: 3)
+                        ForEach(coins) { coin in
+                            YourStockListView(coinName: coin.coinName, coinTicker: coin.coinTicker, coinImage: coin.coinImage, coinPrice: coin.coinPrice, coinGoingUp: coin.coinGoingUp, coinMove: coin.coinMove, coinColors: coin.coinColors)
                         }
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
+                           
                     }
                     
                 }
                 .padding(.horizontal, 15)
+                
+                
                 
                 
                 
@@ -357,3 +366,104 @@ struct HomeBalanceView: View {
     }
 }
 
+
+struct YourStockListView: View {
+    
+    var coinName: String
+    var coinTicker: String
+    var coinImage: String
+    var coinPrice: String
+    var coinGoingUp: Bool
+    var coinMove: String
+    var coinColors: [Color]
+
+    var body: some View {
+    
+            VStack (alignment: .leading) {
+                
+                HStack (alignment: .center) {
+                    AsyncImage(url: URL(string: coinImage)) { image in image.resizable()
+                        
+                    } placeholder: { Color.gray }
+                        .frame(width: 45, height: 45)
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 40))
+                    
+                    
+                    
+                    VStack (alignment: .leading) {
+                        Text(coinName)
+                            .font(.custom(FontUtils.MAIN_BOLD, size: 16))
+                            .foregroundColor(.white)
+                            .padding(.bottom, 5)
+                        
+                        
+                        
+                        Text(coinTicker)
+                            .font(.custom(FontUtils.MAIN_MEDIUM, size: 14))
+                            .foregroundColor(.white)
+                            .opacity(0.5)
+                    }
+                    
+                    Spacer()
+                    
+                }
+                
+                Spacer()
+                
+                HStack {
+                    VStack (alignment: .leading) {
+                        Text("$\(coinPrice)")
+                            .font(.custom(FontUtils.MAIN_BOLD, size: 16))
+                            .foregroundColor(.white)
+                        
+                        HStack (alignment: .center) {
+                            Image(systemName: coinGoingUp ? "chevron.up" : "chevron.down")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 12)
+                                .foregroundColor(coinGoingUp ? .green : .red)
+                                .font(Font.title.weight(.bold))
+                            
+                            Text("\(coinMove)%")
+                                .font(.custom(FontUtils.MAIN_REGULAR, size: 14))
+                                .foregroundColor(coinGoingUp ? .green : .red)
+                            
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 7)
+                        .background(.white)
+                        .cornerRadius(30, corners: .allCorners)
+                        
+                    }
+                    
+                    Chart {
+                        ForEach(0..<5, id: \.self) { item in
+                            LineMark(
+                                x: .value("x", item),
+                                y: .value("y", Int.random(in: 0...7))
+                            )
+                            .lineStyle(.init(lineWidth: 2))
+                            .foregroundStyle(.white)
+                            .opacity(0.5)
+                            
+                        }
+                    }
+                    .chartYAxis(.hidden)
+                    .chartXAxis(.hidden)
+                }
+                
+                
+            }
+            .padding()
+            .frame(width: 190, height: 170)
+            .background( LinearGradient(
+                colors: coinColors,
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing))
+            
+            .cornerRadius(15, corners: .allCorners)
+            .shadow(radius: 3)
+        
+    }
+}
