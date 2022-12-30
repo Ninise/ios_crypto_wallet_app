@@ -18,8 +18,9 @@ class Coin: Identifiable {
     var coinGoingUp: Bool
     var coinMove: String
     var coinColors: [Color]
+    var mcap: String
     
-    init(coinName: String, coinTicker: String, coinImage: String, coinPrice: String, coinGoingUp: Bool, coinMove: String, coinColors: [Color]) {
+    init(coinName: String, coinTicker: String, coinImage: String, coinPrice: String, coinGoingUp: Bool, coinMove: String, coinColors: [Color], mcap: String) {
         self.coinName = coinName
         self.coinTicker = coinTicker
         self.coinImage = coinImage
@@ -27,6 +28,7 @@ class Coin: Identifiable {
         self.coinGoingUp = coinGoingUp
         self.coinMove = coinMove
         self.coinColors = coinColors
+        self.mcap = mcap
     }
     
 }
