@@ -33,11 +33,7 @@ struct MainView: View {
                             }
                         }
                     case 2:
-                        NavigationView {
-                            VStack {
-                                Text("scan")
-                            }
-                        }
+                        ScanView()
                     case 3:
                         NavigationView {
                             VStack {
@@ -106,6 +102,7 @@ struct BottomNavigationView: View {
                     .frame(maxWidth: .infinity, maxHeight: 50)
                     .background(.ultraThinMaterial)
                     
+                    
                 
                 
                 HStack {
@@ -139,6 +136,7 @@ struct BottomNavigationView: View {
                 
                 
             }
+            
             
             
             

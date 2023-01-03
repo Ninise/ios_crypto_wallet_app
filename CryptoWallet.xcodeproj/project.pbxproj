@@ -34,6 +34,7 @@
 		11E6AF5429519083005103EB /* SecretPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E6AF5329519083005103EB /* SecretPhraseView.swift */; };
 		11E6AF572951972C005103EB /* WordGeneratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E6AF562951972C005103EB /* WordGeneratorManager.swift */; };
 		11E6AF59295198DC005103EB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E6AF58295198DC005103EB /* LoadingView.swift */; };
+		11FD69CB29643CE600231FD4 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD69CA29643CE600231FD4 /* ScanView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		11E6AF5329519083005103EB /* SecretPhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretPhraseView.swift; sourceTree = "<group>"; };
 		11E6AF562951972C005103EB /* WordGeneratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGeneratorManager.swift; sourceTree = "<group>"; };
 		11E6AF58295198DC005103EB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		11FD69CA29643CE600231FD4 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,6 @@
 		11245E36295AD8CE00E6F5D1 /* home */ = {
 			isa = PBXGroup;
 			children = (
-				11245E37295AD8DD00E6F5D1 /* MainView.swift */,
 				119F8208296318850043A33C /* HomeView.swift */,
 			);
 			path = home;
@@ -100,7 +101,7 @@
 		113E4E7C2949D6DA009619B0 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				11245E36295AD8CE00E6F5D1 /* home */,
+				11FD69C829643CBE00231FD4 /* main */,
 				1145090929507B6D00F88C99 /* onboarding */,
 				113E4E7D2949D6F9009619B0 /* SplashView.swift */,
 				11E6AF58295198DC005103EB /* LoadingView.swift */,
@@ -201,6 +202,24 @@
 			path = managers;
 			sourceTree = "<group>";
 		};
+		11FD69C829643CBE00231FD4 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				11FD69C929643CD600231FD4 /* scan */,
+				11245E36295AD8CE00E6F5D1 /* home */,
+				11245E37295AD8DD00E6F5D1 /* MainView.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		11FD69C929643CD600231FD4 /* scan */ = {
+			isa = PBXGroup;
+			children = (
+				11FD69CA29643CE600231FD4 /* ScanView.swift */,
+			);
+			path = scan;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +318,7 @@
 				113E4E832949DAFC009619B0 /* View+Extension.swift in Sources */,
 				11245E38295AD8DD00E6F5D1 /* MainView.swift in Sources */,
 				113E4E7E2949D6F9009619B0 /* SplashView.swift in Sources */,
+				11FD69CB29643CE600231FD4 /* ScanView.swift in Sources */,
 				113E4E812949DAB3009619B0 /* Color+Extension.swift in Sources */,
 				119F8209296318850043A33C /* HomeView.swift in Sources */,
 			);
