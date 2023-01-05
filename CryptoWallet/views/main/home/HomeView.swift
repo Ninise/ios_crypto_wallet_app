@@ -18,7 +18,7 @@ struct HomeView_Previews: PreviewProvider {
 
 struct HomeView: View {
     
-    private let url = "https://ninisee.com/static/media/profile.844de107a17fe45c9adf.jpg"
+    private let url = "https://pyxis.nymag.com/v1/imgs/654/1f1/08de774c11d89cb3f4ecf600a33e9c8283-24-keanu-reeves.rsquare.w700.jpg"
     
     @State var selectedList: String
     
@@ -134,7 +134,7 @@ struct HomeTopView: View {
                                     .font(.custom(FontUtils.MAIN_BOLD, size: 16))
                                     .truncationMode(.middle)
                                     .foregroundColor(.white)
-                                    .frame(maxWidth: 90)
+                                    .frame(maxWidth: 160)
                                     .lineLimit(1)
                                 Image(systemName: "doc.on.doc")
                                     .resizable()

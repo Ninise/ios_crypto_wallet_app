@@ -35,11 +35,15 @@ struct MainView: View {
                     case 2:
                         ScanView()
                     case 3:
-                        NavigationView {
-                            VStack {
-                                Text("history")
-                            }
-                        }
+                        
+                        RadialGradient(gradient: Gradient(colors: [.purple.opacity(0.5), .white]), center: .topTrailing, startRadius: 30, endRadius: 300)
+                            .opacity(1)
+                            .edgesIgnoringSafeArea(.all)
+                        
+                        NFTPortfolioView()
+                            .padding(.top, 55)
+                        
+                        
                         
                     default:
                         NavigationView {
@@ -64,6 +68,7 @@ struct MainView: View {
                 
         }
         .navigationBarBackButtonHidden()
+        .preferredColorScheme(.dark)
         
         
     }
@@ -83,7 +88,7 @@ struct BottomNavigationView: View {
         "house",
         "magnifyingglass",
         "qrcode.viewfinder",
-        "clock.arrow.circlepath",
+        "crown",
         "person"
     ]
     
@@ -100,7 +105,7 @@ struct BottomNavigationView: View {
                     
                     }
                     .frame(maxWidth: .infinity, maxHeight: 50)
-                    .background(.ultraThinMaterial)
+                    .background(.white)
                     
                     
                 
