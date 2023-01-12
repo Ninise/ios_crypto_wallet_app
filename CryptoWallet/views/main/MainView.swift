@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @State var selectedIndex = 0
+    
   
     var body: some View {
         
@@ -25,13 +26,9 @@ struct MainView: View {
                     switch selectedIndex {
                     case 0:
                         HomeView()
-
+                            
                     case 1:
-                        NavigationView {
-                            VStack {
-                                Text("search")
-                            }
-                        }
+                        SearchView()
                     case 2:
                         ScanView()
                     case 3:
@@ -94,8 +91,6 @@ struct BottomNavigationView: View {
     
     var body: some View {
         VStack {
-            
-            
             
             ZStack {
                 Divider()

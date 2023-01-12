@@ -28,9 +28,6 @@ struct NFTPortfolioView: View {
     var body: some View {
         ZStack (alignment: .topLeading) {
             
-                
-
-            
             VStack (alignment: .leading) {
                 Text("Your NFT portfolio")
                     .font(.custom(FontUtils.MAIN_BOLD, size: 16))

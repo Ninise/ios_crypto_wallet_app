@@ -26,6 +26,7 @@
 		1145091A295080DF00F88C99 /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11450919295080DF00F88C99 /* FontUtils.swift */; };
 		1145091C295085B900F88C99 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1145091B295085B900F88C99 /* Text+Extension.swift */; };
 		115C35AC295E07610084F2ED /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C35AB295E07610084F2ED /* Coin.swift */; };
+		118A6161296869F900D016CE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A6160296869F900D016CE /* SearchView.swift */; };
 		119F8209296318850043A33C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F8208296318850043A33C /* HomeView.swift */; };
 		11B9AB7A294885AC00C24E9B /* CryptoWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B9AB79294885AC00C24E9B /* CryptoWalletApp.swift */; };
 		11B9AB7C294885AC00C24E9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B9AB7B294885AC00C24E9B /* ContentView.swift */; };
@@ -59,6 +60,7 @@
 		11450919295080DF00F88C99 /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
 		1145091B295085B900F88C99 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
 		115C35AB295E07610084F2ED /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		118A6160296869F900D016CE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		119F8208296318850043A33C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		11B9AB76294885AC00C24E9B /* CryptoWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B9AB79294885AC00C24E9B /* CryptoWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWalletApp.swift; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		118A615F296869E700D016CE /* search */ = {
+			isa = PBXGroup;
+			children = (
+				118A6160296869F900D016CE /* SearchView.swift */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
 		11B9AB6D294885AC00C24E9B = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 		11FD69C829643CBE00231FD4 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				118A615F296869E700D016CE /* search */,
 				112CA264296712EF00448D6B /* nfts */,
 				11FD69C929643CD600231FD4 /* scan */,
 				11245E36295AD8CE00E6F5D1 /* home */,
@@ -328,6 +339,7 @@
 				11B9AB7A294885AC00C24E9B /* CryptoWalletApp.swift in Sources */,
 				1145091C295085B900F88C99 /* Text+Extension.swift in Sources */,
 				11245E3A295AF31F00E6F5D1 /* ImageLoader.swift in Sources */,
+				118A6161296869F900D016CE /* SearchView.swift in Sources */,
 				11C4913F2959E6AB00F7D198 /* FaceIdFingerScanView.swift in Sources */,
 				113E4E832949DAFC009619B0 /* View+Extension.swift in Sources */,
 				112CA2662967131200448D6B /* NFTPortfolioView.swift in Sources */,
