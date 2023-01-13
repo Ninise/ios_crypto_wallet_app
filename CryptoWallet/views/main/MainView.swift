@@ -43,11 +43,12 @@ struct MainView: View {
                         
                         
                     default:
-                        NavigationView {
-                            VStack {
-                                Text("profile")
-                            }
-                        }
+                        RadialGradient(gradient: Gradient(colors: [Color(hex: "#7A17D7"), Color(hex: "#ED74CD"), Color(hex: "#EBB5A3") ]), center: .topTrailing, startRadius: 100, endRadius: 800)
+                            .frame(height: 550)
+                            .edgesIgnoringSafeArea(.top)
+                        
+                        ProfileView()
+                            .padding(.top, 50)
                         
                     }
                 }
