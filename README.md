@@ -17,7 +17,7 @@ The goal of the project is to learn how to use SwiftUI to build a custom iOS des
 
 -----------------------------------------------------
 
-<p>
+<p align="center">
   <img src="../main/CryptoWallet/landing.png" width="225">
   <img src="../main/CryptoWallet/generate_pass_1.png" width="225">
   <img src="../main/CryptoWallet/generate_pass_2.png" width="225">
