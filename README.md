@@ -11,7 +11,7 @@ The goal of the project is to learn how to use SwiftUI to build a custom iOS des
 - SwiftUIToast
 
 ## Original Design
-- [Behance][https://www.behance.net/gallery/152037337/IOS-App-Design-for-Fintech-Crypto-Wallet-UX-UI-Design?tracking_source=search_projects%7Cios+crypto+app]
+- [Behance](https://www.behance.net/gallery/152037337/IOS-App-Design-for-Fintech-Crypto-Wallet-UX-UI-Design?tracking_source=search_projects%7Cios+crypto+app)
 
 ## Screenshots
 
@@ -21,6 +21,7 @@ The goal of the project is to learn how to use SwiftUI to build a custom iOS des
   <img src="../main/CryptoWallet/landing.png" width="225">
   <img src="../main/CryptoWallet/generate_pass_1.png" width="225">
   <img src="../main/CryptoWallet/generate_pass_2.png" width="225">
+  </br>
   <img src="../main/CryptoWallet/main_1.png" width="225">
   <img src="../main/CryptoWallet/main_2.png" width="225">
   <img src="../main/CryptoWallet/main_3.png" width="225">
